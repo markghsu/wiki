@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mark's wiki -- {{title}}</title>
+	</head>
+	<body>
+		<div class="topbar">
+			{% if( not loggedin) %}
+				<a href="/login">login</a>
+			{% else %}
+				Welcome, {{loggedin}} (<a href="/logout">logout</a>)
+			{% endif %}
+		</div>
+		<div class="edit">
+			{% if(loggedin) %}
+				<a href="/_edit/{{title}}">edit</a> |
+			{% endif %}
+			<a href="/_history/{{title}}">history</a>
+		</div>
+		<div><h1>Mark's Wiki</h1>
+		{% block content %}
+		{% endblock %}
+		</div>
+	</body>
+</html>

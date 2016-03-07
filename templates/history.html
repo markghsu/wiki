@@ -1,0 +1,28 @@
+{% extends "frame.html" %}
+{% block content %}
+<h2>{{title}} -- History</h2>
+<table>
+	<tr>
+		<td>Version</td>
+		<td>Content</td>
+		<td>Edit Time</td>
+	</tr>
+{% for version in versions %}
+	<tr>
+		<td>{{version.version}}</td>
+		<td class="content-frame">
+		{{version.content}}
+		</td>
+		<td>
+		{{version.created}}
+		</td>
+		<td>
+		<a href="/_edit/{{title}}">edit</a>
+		</td>
+		<td>
+		<a href="/{{title}}?v={{version.version}}">show</a>
+		</td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

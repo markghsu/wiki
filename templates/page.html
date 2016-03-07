@@ -1,0 +1,9 @@
+{% extends "frame.html" %}
+{% block content %}
+<h2>{{title}}</h2>
+<h3 class="version">{% if(version) %}Version {{version}}{% endif %}</h3>
+<div class="error">{{error}}</div>
+<div class="content-frame">
+	{{content|safe}}
+</div>
+{% endblock %}
