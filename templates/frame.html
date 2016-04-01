@@ -5,25 +5,29 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mark's wiki -- {{title}}</title>
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="/css/styles.css">
 	</head>
 	<body>
-		<div class="topbar">
-			{% if( not loggedin) %}
-				<a href="/login">login</a>
-			{% else %}
-				Welcome, {{loggedin}} (<a href="/logout">logout</a>)
-			{% endif %}
-		</div>
-		<div class="edit">
-			{% if(title) %}
-				{% if(loggedin) %}
-					<a href="/_edit/{{title}}">edit</a> |
-				{% endif %}
-				
-				<a href="/_history/{{title}}">history</a>
-			{% endif %}
-		</div>
+		<header>
+			<nav class="top-nav">
+				<div class="loggedin">
+					{% if( not loggedin) %}
+						<a href="/login">login</a>
+					{% else %}
+						Welcome, {{loggedin}} (<a href="/logout">logout</a>)
+					{% endif %}
+				</div>
+				<div class="edit">
+					{% if(title) %}
+						{% if(loggedin) %}
+							<a href="/_edit/{{title}}">edit</a> |
+						{% endif %}
+						
+						<a href="/_history/{{title}}">history</a>
+					{% endif %}
+				</div>
+			</nav>
+		</header>
 		<div><h1>Mark's Wiki</h1>
 		{% block content %}
 		{% endblock %}

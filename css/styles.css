@@ -1,3 +1,16 @@
 body {
 	background: #EEE;
 }
+h1, h2, h3 {
+	text-align: center;
+}
+nav {
+	height: 30px;
+}
+nav>div{
+	float:right;
+	margin:10px;	
+}
+.version {
+	color:teal;
+}
