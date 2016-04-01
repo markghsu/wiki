@@ -10,4 +10,4 @@ from google.appengine.ext import db
 class MainPage(Handler):
 	def get(self):
 		#gp = getPosts()
-		self.render("front.html",title="Main Page",time='%.4f'%(time.time()),loggedin=self.loggedin())
+		self.render("front.html",title="",time='%.4f'%(time.time()),loggedin=self.loggedin())

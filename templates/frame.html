@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mark's wiki -- {{title}}</title>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
 		<div class="topbar">
@@ -12,10 +16,13 @@
 			{% endif %}
 		</div>
 		<div class="edit">
-			{% if(loggedin) %}
-				<a href="/_edit/{{title}}">edit</a> |
+			{% if(title) %}
+				{% if(loggedin) %}
+					<a href="/_edit/{{title}}">edit</a> |
+				{% endif %}
+				
+				<a href="/_history/{{title}}">history</a>
 			{% endif %}
-			<a href="/_history/{{title}}">history</a>
 		</div>
 		<div><h1>Mark's Wiki</h1>
 		{% block content %}

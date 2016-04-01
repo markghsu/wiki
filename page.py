@@ -11,9 +11,12 @@ import logging
 
 def getPage(name):
 	page = memcache.get("page_"+name)
+	logging.warning("trying to find")
 	if not page:
-		key = db.Key.from_path('Page', name, parent=wikiKey())
-		page = db.get(key)
+		logging.warning("can't find "+name+" in memcache")
+		query = Page.all().filter("name =",name).ancestor(wikiKey())
+		page = query.get()
+		logging.warning("query"+str(page));
 		if page:
 			memcache.set("page_"+name,page,100)
 	return page
@@ -27,6 +30,7 @@ def getVersion(page,v):
 		return None
 
 def savePage(p):
+	logging.warning("saving"+str(p.name)+str(p.content)+str(p.parent)+str(p.version));
 	p.put()
 	#also saves a new version
 
@@ -37,6 +41,7 @@ def savePage(p):
 
 # parent for all wiki posts.
 def wikiKey(key="default"):
+	logging.warning("wikikey: "+str(db.Key.from_path('wiki',key)))
 	return db.Key.from_path('wiki',key)
 
 class PageHandler(Handler):
@@ -64,6 +69,7 @@ class History(Handler):
 			self.render("history.html",title=name,versions=versions, loggedin=self.loggedin())
 		else:
 			self.redirect("/_edit/"+name)
+
 
 class EditPage(Handler):
 	def get(self,name):
